@@ -1,3 +1,38 @@
+function unlockSite() {
+  const input = document.getElementById("password-input").value;
+  const error = document.getElementById("lock-error");
+
+  const PASSWORD = "tuch gappu"; // change if needed
+
+  if (input === PASSWORD) {
+    const lockScreen = document.getElementById("lock-screen");
+    const site = document.getElementById("site-content");
+    const music = document.getElementById("bg-music");
+
+    // 🎶 Play music AFTER unlock (browser-safe)
+    // 🎶 Play music at low volume (always)
+if (music && music.paused) {
+  music.volume = 0.1; // 🔉 LOW volume (10%)
+  music.play().catch(() => {});
+}
+
+
+
+    // ✨ Start transition
+    lockScreen.classList.add("unlocking");
+    site.classList.add("visible");
+
+    // 🧹 Remove lock screen after animation
+    setTimeout(() => {
+      lockScreen.style.display = "none";
+    }, 1000);
+
+  } else {
+    error.textContent = "Hmm… that’s not it 😌💕";
+  }
+}
+
+
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -136,25 +171,42 @@ window.unlockDance = function () {
   }
 };
 
-
-
-
-});
-
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("play", (e) => {
   const music = document.getElementById("bg-music");
+
   if (!music) return;
 
-  music.volume = 0.5;
+  if (e.target.tagName === "VIDEO") {
+    if (!music.paused) {
+      music.pause();
+    }
+  }
+}, true); // 👈 capture phase is IMPORTANT
 
-  const startMusic = () => {
+document.addEventListener("pause", (e) => {
+  const music = document.getElementById("bg-music");
+
+  if (!music) return;
+
+  if (e.target.tagName === "VIDEO") {
     music.play().catch(() => {});
-    document.removeEventListener("click", startMusic);
-    document.removeEventListener("touchstart", startMusic);
-  };
+  }
+}, true);
 
-  document.addEventListener("click", startMusic);
-  document.addEventListener("touchstart", startMusic);
+document.addEventListener("ended", (e) => {
+  const music = document.getElementById("bg-music");
+
+  if (!music) return;
+
+  if (e.target.tagName === "VIDEO") {
+    music.play().catch(() => {});
+  }
+}, true);
+
+
+
+
+
 });
 
 

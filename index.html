@@ -1,3 +1,26 @@
+<body>
+
+<!-- 🔐 LOCK SCREEN -->
+<div id="lock-screen" class="lock-screen">
+  <div class="lock-box">
+    <h1>For Atutu ❤️</h1>
+    <p>This space is just for you 😌</p>
+
+   <input
+  type="password"
+  id="password-input"
+  placeholder="Enter the magic word ✨"
+  onkeydown="if(event.key === 'Enter') unlockSite()"
+/>
+
+
+    <button onclick="unlockSite()">Unlock 💖</button>
+    <p id="lock-error"></p>
+  </div>
+</div>
+
+<!-- 🌍 MAIN WEBSITE -->
+<div id="site-content" class="site-content">
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -89,6 +112,12 @@
     <img src="photos/us/u2.jpg">
   </div>
 </section>
+
+<section class="section travel">
+  <h2>Places We’ll Travel Together ✈️</h2>
+  <p class="subtext">
+    Not just destinations — future memories waiting to happen 💕
+  </p>
 
 <div class="travel-cards">
 
@@ -282,3 +311,8 @@ Shubhu
 <script src="script.js"></script>
 </body>
 </html>
+</div>
+
+<script src="script.js"></script>
+</body>
+
